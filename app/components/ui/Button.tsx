@@ -12,14 +12,14 @@ export default function Button({
   onClick,
 }: Props) {
   const base =
-    "h-11 px-6 rounded-btn font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2";
+    "h-11 px-6 rounded-lg font-medium transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2";
 
   const styles = {
     primary: disabled
-      ? "bg-desactive text-texte-clair cursor-not-allowed"
-      : "bg-accent text-white hover:bg-accent-fonce active:bg-accent-fonce",
+      ? "bg-gray-300 text-gray-500 cursor-not-allowed"
+      : "bg-accent text-white hover:bg-accent/90 active:bg-accent",
     secondary: disabled
-      ? "border border-bordure text-texte-clair cursor-not-allowed"
+      ? "border border-gray-300 text-gray-400 cursor-not-allowed"
       : "border border-accent text-accent hover:bg-accent hover:text-white",
   };
 

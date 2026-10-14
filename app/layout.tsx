@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/navigation/NavBar";
+import LoadingScreen from "./components/ui/LoadingScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +21,11 @@ export const metadata: Metadata = {
   },
   description:
     "Portfolio professionnel d'Ankafa MT. Développeur web spécialisé en Next.js, React et technologies modernes.",
+  icons: {
+    icon: "/images/logo.png",
+    shortcut: "/images/logo.png",
+    apple: "/images/logo.png",
+  },
   keywords: [
     "portfolio",
     "développeur web",
@@ -63,6 +69,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#F5F0E6" />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <LoadingScreen />
         <NavBar />
         <main className="flex-1">{children}</main>
       </body>

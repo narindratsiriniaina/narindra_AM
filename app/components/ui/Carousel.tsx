@@ -13,7 +13,7 @@ export default function Carousel({ items }: Props) {
 
   return (
     <div className="relative w-full">
-      <div className="overflow-hidden rounded-card border border-bordure bg-blanc p-8">
+      <div className="overflow-hidden rounded-xl border border-foreground/10 bg-white p-8">
         {items[index]}
       </div>
 
@@ -34,7 +34,7 @@ export default function Carousel({ items }: Props) {
               onClick={() => setIndex(i)}
               aria-label={`Aller à la slide ${i + 1}`}
               className={`w-2 h-2 rounded-full transition-colors
-                ${i === index ? "bg-accent" : "bg-bordure"}
+                ${i === index ? "bg-accent" : "bg-gray-300"}
               `}
             />
           ))}

@@ -5,17 +5,18 @@ import Training from "./components/sections/Training";
 import Projects from "./components/sections/Projects";
 import Contact from "./components/sections/Contact";
 import Footer from "./components/sections/Footer";
+import ScrollReveal from "./components/ui/ScrollReveal";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <About />
-      <Services />
-      <Training />
+      <ScrollReveal delay="short"><About /></ScrollReveal>
+      <ScrollReveal delay="medium"><Services /></ScrollReveal>
+      <ScrollReveal delay="short"><Training /></ScrollReveal>
       <Projects />
-      <Contact />
-      <Footer />
+      <ScrollReveal delay="medium"><Contact /></ScrollReveal>
+      <ScrollReveal delay="short"><Footer /></ScrollReveal>
     </>
   );
 }

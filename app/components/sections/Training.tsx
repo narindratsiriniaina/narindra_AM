@@ -1,3 +1,5 @@
+import { texts } from "@/app/lib/texts";
+
 interface SubItem {
   title: string;
   date: string;
@@ -25,7 +27,7 @@ const formation: Entry[] = [
     description:
       "Formation orientée vers le développement web, mobile, bases de données, analyse et conception d'applications.",
     fileHref: "/documents/licence-emit.pdf",
-    fileLabel: "Voir diplôme",
+    fileLabel: texts.training.diploma,
   },
 ];
 
@@ -38,7 +40,7 @@ const certifications: Entry[] = [
       "Apprentissage des concepts fondamentaux de l'intégration et du déploiement continus (CI/CD) pour l'automatisation de la mise en production.",
     tags: ["CI/CD", "Docker", "GitHub Actions", "Cloud/VPS"],
     fileHref: "/documents/certificat-devops.pdf",
-    fileLabel: "Voir certificat",
+    fileLabel: texts.training.certificate,
   },
   {
     title: "Certifications autodidactes",
@@ -59,7 +61,6 @@ const certifications: Entry[] = [
   },
 ];
 
-/* Icônes : taille fixée en attribut (robuste) + classes Tailwind pour la couleur */
 const ICON_SIZE = 18;
 const ICON_SIZE_SM = 14;
 
@@ -153,6 +154,7 @@ function IconExternalLink() {
 }
 
 function StatusBadge({ status, date }: { status?: Entry["status"]; date: string }) {
+  const t = texts.training;
   if (status === "terminee") {
     return (
       <span className="inline-flex flex-wrap items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-accent/15 text-accent">
@@ -160,7 +162,7 @@ function StatusBadge({ status, date }: { status?: Entry["status"]; date: string 
         <time>{date}</time>
         <span className="inline-flex items-center gap-1 pl-1.5 border-l border-accent/30 text-foreground/70">
           <IconCheck />
-          Terminée
+          {t.statusCompleted}
         </span>
       </span>
     );
@@ -187,13 +189,7 @@ function FileLink({ href, label }: { href: string; label: string }) {
   );
 }
 
-function EntryCard({
-  icon,
-  entry,
-}: {
-  icon: React.ReactNode;
-  entry: Entry;
-}) {
+function EntryCard({ icon, entry }: { icon: React.ReactNode; entry: Entry }) {
   return (
     <article className="bg-white/80 rounded-xl border border-foreground/10 shadow-sm p-5 sm:p-6">
       <div className="flex gap-4">
@@ -226,9 +222,6 @@ function EntryCard({
               ))}
             </ul>
           )}
-          {entry.fileHref && entry.fileLabel && (
-            <FileLink href={entry.fileHref} label={entry.fileLabel} />
-          )}
         </div>
       </div>
     </article>
@@ -256,7 +249,7 @@ function GroupEntryCard({ icon, entry }: { icon: React.ReactNode; entry: Entry }
                 <div className="mt-1.5">
                   <StatusBadge date={sub.date} />
                 </div>
-                <FileLink href={sub.fileHref} label="Voir certificat" />
+            
               </li>
             ))}
           </ul>
@@ -267,9 +260,10 @@ function GroupEntryCard({ icon, entry }: { icon: React.ReactNode; entry: Entry }
 }
 
 export default function Training() {
+  const t = texts.training;
+
   return (
     <section id="formation" className="relative py-20 px-4 lg:py-28 overflow-hidden">
-      {/* Décorations (purement visuelles) */}
       <div
         aria-hidden="true"
         className="hidden md:grid grid-cols-4 gap-2 absolute top-10 right-10 opacity-70 pointer-events-none"
@@ -288,32 +282,29 @@ export default function Training() {
       />
 
       <div className="relative max-w-6xl mx-auto">
-        {/* En-tête */}
         <div className="mb-14">
           <div className="flex items-center gap-3 mb-4">
             <span aria-hidden="true" className="w-8 h-0.5 bg-accent" />
             <span className="text-xs font-semibold tracking-widest text-accent uppercase">
-              Formation &amp; Certifications
+              {t.title}
             </span>
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-            Mon parcours académique et mes certifications
+            {t.heading}
           </h2>
           <p className="text-base sm:text-lg text-foreground/70 leading-relaxed max-w-2xl">
-            Une formation solide et des certifications pour renforcer mes compétences et rester à jour dans un monde en constante évolution.
+            {t.description}
           </p>
         </div>
 
-        {/* Grille 2 colonnes, bien séparées */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* Colonne Formation */}
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shrink-0">
                 <IconGraduation />
               </div>
               <h3 className="text-sm font-bold tracking-widest text-foreground uppercase">
-                Formation
+                {t.formation}
               </h3>
               <span aria-hidden="true" className="flex-1 h-px bg-accent/30" />
             </div>
@@ -325,14 +316,13 @@ export default function Training() {
             </div>
           </div>
 
-          {/* Colonne Certifications & Formations */}
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-accent text-white flex items-center justify-center shrink-0">
                 <IconCertificate />
               </div>
               <h3 className="text-sm font-bold tracking-widest text-foreground uppercase">
-                Certifications &amp; Formations
+                {t.certifications}
               </h3>
               <span aria-hidden="true" className="flex-1 h-px bg-accent/30" />
             </div>

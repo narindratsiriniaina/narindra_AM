@@ -25,11 +25,11 @@ export default function Modal({ open, onClose, title, children }: Props) {
       onClick={onClose}
     >
       <div
-        className="bg-blanc rounded-modal w-full max-w-md p-6 shadow-lg animate-fadeIn"
+        className="bg-white rounded-xl w-full max-w-md p-6 shadow-lg animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-bold text-texte">{title}</h3>
+          <h3 className="text-lg font-bold text-foreground">{title}</h3>
           <button
             onClick={onClose}
             className="w-8 h-8 rounded-full text-accent hover:bg-accent hover:text-white

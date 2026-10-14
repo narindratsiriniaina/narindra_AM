@@ -1,78 +1,59 @@
-import Image from 'next/image';
-import Link from 'next/link';
+import Image from "next/image";
+import { texts } from "@/app/lib/texts";
 
 interface PersonalInfo {
-  label: string;
-  value: string;
+  readonly label: string;
+  readonly value: string;
 }
 
 export default function About() {
-  const personalInfo: PersonalInfo[] = [
-    { label: 'Nom complet', value: 'Narindra' },
-    { label: 'Email', value: 'narindra@example.com' },
-    { label: 'Localisation', value: 'Madagascar' },
-    { label: 'Disponibilité', value: 'Freelance' },
-  ];
+  const a = texts.about;
+  const personalInfo: readonly PersonalInfo[] = a.personalInfo;
 
   return (
     <section id="apropos" className="py-20 px-4 lg:py-32">
       <div className="max-w-7xl mx-auto">
-        {/* Desktop: 2 colonnes | Mobile/Tablet: 1 colonne */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          
-          {/* COLONNE GAUCHE: PHOTO */}
-          <div className="order-2 lg:order-1 flex justify-center">
-            <div className="relative w-full max-w-sm aspect-square">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div className="lg:col-span-5 order-2 lg:order-1 flex justify-center">
+            <div className="relative w-full max-w-md aspect-square rounded-2xl overflow-hidden shadow-xl border-4 border-white">
               <Image
-                src="/images/narindra.png"
-                alt="Narindra - Développeur web"
+                src="/images/tsiry.png"
+                alt={a.imageAlt}
                 fill
-                className="object-cover rounded-xl"
+                className="object-cover"
                 priority
-                sizes="(max-width: 768px) 100vw, 45vw"
+                sizes="(max-width: 768px) 100vw, 40vw"
               />
             </div>
           </div>
 
-          {/* COLONNE DROITE: CONTENU */}
-          <div className="order-1 lg:order-2">
-            {/* Label */}
-            <span className="inline-block text-xs font-semibold tracking-widest text-accent mb-4 uppercase">
-              À propos
+          <div className="lg:col-span-7 order-1 lg:order-2">
+            <span className="inline-block text-xs font-semibold tracking-widest text-accent mb-3 uppercase">
+              {a.title}
             </span>
 
-            {/* Titre */}
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
-              À propos de moi
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 leading-tight">
+              {a.heading}
             </h2>
 
-            {/* Description */}
-            <p className="text-lg text-foreground/70 leading-relaxed mb-8">
-              Passionné par la technologie, je conçois des solutions numériques simples, utiles et accessibles. Mon objectif est de créer des expériences digitales qui facilitent la vie des utilisateurs et apportent une vraie valeur.
-            </p>
+            <blockquote className="p-4 mb-6 italic text-foreground/80 bg-accent/10 border-l-4 border-accent rounded-r-xl text-sm sm:text-base">
+              {a.quote}
+            </blockquote>
 
-            {/* Infos Personnelles */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8 py-8 border-t border-b border-foreground/10">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8 py-6 border-t border-b border-foreground/10">
               {personalInfo.map((info, index) => (
-                <div key={index}>
-                  <p className="text-sm font-semibold text-foreground/60 uppercase tracking-wide mb-2">
+                <div key={index} className="space-y-1">
+                  <p className="text-xs font-semibold text-foreground/50 uppercase tracking-wide">
                     {info.label}
                   </p>
-                  <p className="text-base text-foreground font-medium">
+                  <p className="text-sm sm:text-base text-foreground font-medium">
                     {info.value}
                   </p>
                 </div>
               ))}
             </div>
-
-            {/* Bouton CV */}
-            <Link href="#contact">
-              <button className="inline-block px-8 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-accent/90 transition-all duration-300 transform hover:scale-105">
-                Télécharger CV
-              </button>
-            </Link>
           </div>
-
         </div>
       </div>
     </section>
